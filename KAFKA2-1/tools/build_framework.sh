@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # Prevent jenkins from immediately killing the script when a step fails, allowing us to notify github:
 set +e
@@ -45,16 +45,21 @@ fi
 
 # Executor Bootstrap (Go):
 BOOTSTRAP_DIR=${TOOLS_DIR}/../sdk/bootstrap
-${BOOTSTRAP_DIR}/build.sh
-if [ $? -ne 0 ]; then
-    _notify_github failure "Bootstrap build failed"
-    exit 1
+if [ -d $BOOTSTRAP_DIR ] ; then
+	${BOOTSTRAP_DIR}/build.sh
+	if [ $? -ne 0 ]; then
+  	  _notify_github failure "Bootstrap build failed"
+  	  exit 1
+	fi
+else
+	echo "There is no bootstrap_directory : $BOOTSTRAP_DIR "
 fi
 
 # CLI (Go):
 # /home/user/dcos-commons/frameworks/helloworld/cli => frameworks/helloworld/cli
 REPO_CLI_RELATIVE_PATH="$(echo $CLI_DIR | cut -c $((2 + ${#REPO_ROOT_DIR}))-)"
 ${TOOLS_DIR}/build_cli.sh ${CLI_EXE_NAME} ${CLI_DIR} ${REPO_CLI_RELATIVE_PATH}
+cli/build-cli.sh
 if [ $? -ne 0 ]; then
     _notify_github failure "CLI build failed"
     exit 1

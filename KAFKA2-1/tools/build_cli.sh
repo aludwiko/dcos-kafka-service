@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # exit immediately on failure
 set -e
@@ -92,18 +92,20 @@ build_cli() {
 }
 
 # Configure GOPATH with dcos-commons symlink (rather than having it pull master):
-echo "Creating GOPATH symlink into dcos-commons: $GOPATH"
+#echo "Creating GOPATH symlink into dcos-commons: $GOPATH"
 REPO_NAME=dcos-commons # CI dir does not match repo name
-GOPATH_MESOSPHERE=$GOPATH/src/github.com/mesosphere
-rm -rf $GOPATH_MESOSPHERE/$REPO_NAME
-mkdir -p $GOPATH_MESOSPHERE
-pushd $GOPATH_MESOSPHERE
-ln -s $REPO_ROOT_DIR $REPO_NAME
-popd
-echo "Created symlink $GOPATH_MESOSPHERE/$REPO_NAME -> $REPO_ROOT_DIR"
+#GOPATH_MESOSPHERE=$GOPATH/src/github.com/mesosphere
+#rm -rf $GOPATH_MESOSPHERE/$REPO_NAME
+#mkdir -p $GOPATH_MESOSPHERE
+#pushd $GOPATH_MESOSPHERE
+#ln -s $REPO_ROOT_DIR $REPO_NAME
+#popd
+#echo "Created symlink $GOPATH_MESOSPHERE/$REPO_NAME -> $REPO_ROOT_DIR"
 
 # run get/build from within GOPATH:
-pushd $GOPATH_MESOSPHERE/$REPO_NAME/$REPO_CLI_RELATIVE_PATH/$CLI_EXE_NAME/
+#pushd $GOPATH_MESOSPHERE/$REPO_NAME/$REPO_CLI_RELATIVE_PATH/$CLI_EXE_NAME/
+pushd $CLI_DIR/$CLI_EXE_NAME/
+pwd
 go get
 build_cli windows .exe # use default .exe suffix
 build_cli darwin -darwin # add -darwin suffix
