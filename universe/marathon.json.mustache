@@ -3,7 +3,7 @@
   "cpus": 1.0,
   "mem": 1230,
   "instances": 1,
-  "cmd": "{{service.cmd_prefix}} && ./kafka-scheduler/bin/kafka ./kafka-scheduler/kafka_svc.yml",
+  "cmd": "{{service.cmd_prefix}} && ./kafka-scheduler/bin/dcos-kafka-service ./kafka-scheduler/kafka_svc.yml",
   "labels": {
     "DCOS_PACKAGE_FRAMEWORK_NAME": "{{service.name}}",
     "DCOS_MIGRATION_API_VERSION": "v1",
@@ -36,7 +36,7 @@
     "BROKER_MEM": "{{brokers.mem}}",
     "BROKER_DISK_SIZE": "{{brokers.disk}}",
     "BROKER_DISK_TYPE": "{{brokers.disk_type}}",
-    "BROKER_DATA_PATH": "{{brokers.disk_path}}",
+    "BROKER_DISK_PATH": "{{brokers.disk_path}}",
     "BROKER_HEAP": "{{brokers.heap}}",
     "BROKER_PORT": "{{brokers.port}}",
     
@@ -56,7 +56,7 @@
 
     "TASKCFG_ALL_BROKER_DISK_PATH" : "{{brokers.disk_path}}",
 
-    "TASKCFG_ALL_BROKER_STATSD_HOST": "{{brokers.statsd.host}}",
+    "TASKCFG_ALL_BROEKR_STATSD_HOST": "{{brokers.statsd.host}}",
     "TASKCFG_ALL_BROKER_STATSD_PORT": "{{brokers.statsd.port}}",
 
     "TASKCFG_ALL_KAFKA_ZOOKEEPER_URI" : "{{kafka.kafka_zookeeper_uri}}",

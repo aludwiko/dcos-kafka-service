@@ -178,7 +178,7 @@
             "title":"The address of the Zookeeper cluster used by Kafka.",
             "description":"This should be the address of the Zookeeper cluster Kafka will use.",
             "type":"string",
-            "default":"master.mesos:2181/dcos-apache-kafka-zk-connect"
+            "default":"master.mesos:2181/dcos-service-kafka"
           },
           "auto_create_topics_enable":{
             "title":"auto.create.topics.enable",

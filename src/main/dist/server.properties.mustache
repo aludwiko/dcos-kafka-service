@@ -1,5 +1,5 @@
-external.kafka.statsd.port={{KAFKA_STATSD_PORT}}
-external.kafka.statsd.host={{KAFKA_STATSD_HOSTS}}
+external.kafka.statsd.port={{BROKER_STATSD_PORT}}
+external.kafka.statsd.host={{BROKER_STATSD_HOSTS}}
 external.kafka.statsd.reporter.enabled=true
 external.kafka.statsd.tag.enabled=true
 external.kafka.statsd.metrics.exclude_regex=
@@ -15,7 +15,7 @@ broker.id={{POD_INSTANCE_INDEX}}
 #
 zookeeper.connect={{KAFKA_ZOOKEEPER_URI}}
 #
-log.dirs={{KAFKA_BROKER_DISK_PATH}}/broker-{{POD_INSTANCE_INDEX}}
+log.dirs={{BROKER_DISK_PATH}}/broker-{{POD_INSTANCE_INDEX}}
 #
 #listeners=PLAINTEXT://:9285
 #
